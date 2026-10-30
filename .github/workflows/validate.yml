@@ -22,7 +22,7 @@ jobs:
       matrix:
         include:
           - suite: package-and-tools
-            modules: tests.test_package tests.test_tools tests.test_workflow
+            modules: tests.test_package tests.test_tools tests.test_workflow tests.test_website
           - suite: notebook-delivery
             modules: tests.test_notebook_execution tests.test_eval_delivery tests.test_eval_notebook tests.test_eval_publish tests.test_eval_storage
           - suite: evaluation-contracts
