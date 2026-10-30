@@ -2,6 +2,8 @@
 
 [1ml](../README.md) gives AI coding agents twelve connected machine learning skills for data analysis, modeling and reproducible Jupyter notebooks. Start with the [lifecycle skill](../skills/lifecycle/SKILL.md), or use an individual skill for a focused decision. Follow the [installation guide](installation.md) for Codex, Claude Code and other supported agent integrations.
 
+1ml is free and open source. Start with a [small synthetic project](getting-started.md), or see a [public notebook and task-specific starter prompts](examples.md). Your agent/model service and compute may have their own costs.
+
 ## Classification skills
 
 Classification predicts a category, such as customer churn, equipment failure or the class of a document. Binary classification and multiclass classification need an explicit label definition and a validation split that matches how predictions will be used.
