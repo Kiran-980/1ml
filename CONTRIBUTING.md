@@ -4,6 +4,17 @@ Start a focused branch from `develop` and open your pull request against `develo
 `main` is the repository default and stable plugin source. Maintainers release through a `develop` → `main`
 pull request after all required checks pass.
 
+## Ways to contribute
+
+You do not need to change Python code to help. Useful contributions include:
+
+- A public notebook showing classification, regression, forecasting or clustering, with a clear data source, validation design, dependency versions and measured limitations.
+- A small reproducible example of a confusing instruction, execution failure or misleading conclusion.
+- Verified installation instructions for another agent or operating system.
+- Clearer explanations, accessible charts and documentation corrections.
+
+1ml is free and open source. Contributions do not require a subscription or purchase. Link to public examples in [the example guide](docs/examples.md); keep downloaded datasets, credentials and generated model weights out of this repository.
+
 ## Set up and check a change
 
 ```sh
