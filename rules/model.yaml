@@ -1,0 +1,50 @@
+{
+  "stage": "model",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "MODEL-001",
+      "title": "Candidate selection needs evidence",
+      "scope": "dataset",
+      "applies_when": {
+        "n_rows": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Verify the task/evaluation contract and meaningful baseline, then compare a small justified candidate set within budget."
+      },
+      "rationale": "Row count alone does not select model family or require search.",
+      "reference": "skills/train/references/candidates.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/machine_learning_map.html",
+          "section": "Candidate selection needs evidence"
+        }
+      ]
+    },
+    {
+      "id": "MODEL-002",
+      "title": "Imbalance may affect learning and policy",
+      "scope": "target",
+      "applies_when": {
+        "imbalance_ratio": {
+          "lt": 0.5
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Compare unweighted and justified weighting/resampling approaches under the declared metric; inspect probability/policy effects."
+      },
+      "rationale": "Weighting is a candidate, not a mandatory remedy for every imbalance.",
+      "reference": "skills/prepare/references/representations.md",
+      "cite": [
+        {
+          "url": "https://imbalanced-learn.org/stable/common_pitfalls.html",
+          "section": "Imbalance may affect learning and policy"
+        }
+      ]
+    }
+  ]
+}

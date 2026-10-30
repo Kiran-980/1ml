@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.1",
+  "name": "structural-missingness",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "I have 1,000 customer rows. annual_salary is blank for 800 customers whose employment_type is 'not employed'; the source owner confirms salary is not applicable, not an unrecorded salary. The remaining customers are employed and 20 of those have unknown salaries. We will compare logistic regression and a tree model for future renewal; no split is frozen yet. Should I median-fill salary now before splitting? Give a concrete preparation plan, including what has to be settled first. This is a design question; do not create a notebook or fit a model.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Distinguish structural not-applicable from unknown. Do not infer MCAR/MAR/MNAR from fraction alone. Define evaluation boundary before learning imputation, fit within training folds, apply to validation/test. Fixed semantic correction can precede splitting. Consider model compatibility and indicators without claiming the optimum or forcing approval based on missingness percentage. Fail even an otherwise correct answer if it permits learned preprocessing before CV for model-only comparison. If code is included, fail invalid syntax, ColumnTransformer row masks used as column selectors, or MissingIndicator after imputation that loses the original missing mask/features. A justified transformation specification without code is sufficient."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-missingness",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "missingness\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-forecasting",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "forecasting\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-controlled-experiments",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "controlled-experiments\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-packaging-rollout",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "packaging-rollout\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

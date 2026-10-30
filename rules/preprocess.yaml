@@ -1,0 +1,68 @@
+{
+  "stage": "preprocess",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "PRE-001",
+      "title": "Missing values need semantic interpretation",
+      "scope": "column",
+      "applies_when": {
+        "missing_fraction": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Investigate source meaning and prediction-time availability; compare fold-local filling/indicators or supported native missing handling as appropriate."
+      },
+      "rationale": "Percentage missing alone cannot establish mechanism, imputer choice, or mandatory user escalation.",
+      "reference": "skills/prepare/references/missingness.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/impute.html",
+          "section": "Missing values need semantic interpretation"
+        }
+      ]
+    },
+    {
+      "id": "PRE-002",
+      "title": "Numeric representation is candidate-dependent",
+      "scope": "column",
+      "applies_when": {
+        "kind": "numeric"
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Check whether scale, sparsity, outliers and domain affect the chosen estimator or distance calculation before selecting transforms."
+      },
+      "rationale": "Not every numeric feature needs standardization.",
+      "reference": "skills/prepare/references/representations.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/preprocessing.html",
+          "section": "Numeric representation is candidate-dependent"
+        }
+      ]
+    },
+    {
+      "id": "PRE-003",
+      "title": "Categorical representation requires semantics",
+      "scope": "column",
+      "applies_when": {
+        "kind": "categorical"
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Determine nominal/ordered meaning, unknown/missing policy and estimator support before comparing encodings."
+      },
+      "rationale": "Cardinality alone does not establish order or safe target encoding.",
+      "reference": "skills/prepare/references/representations.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/preprocessing.html",
+          "section": "Categorical representation requires semantics"
+        }
+      ]
+    }
+  ]
+}

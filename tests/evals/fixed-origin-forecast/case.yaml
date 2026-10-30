@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.1",
+  "name": "fixed-origin-forecast",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "We order inventory at 08:00 each Monday for the next seven days. Historical data has daily sales and observed daily weather. A notebook predicts each day using the previous day's actual sales and that day's observed weather, and reports excellent seven-day performance. Walk me through whether to trust it and what workflow to use next. We only want a review and plan today.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Route early to forecasting task profile. Monday fixed-origin information set prohibits actual Tuesday sales for Wednesday prediction or future observed weather. Recreate cutoff/horizon backtests with only known inputs or archived forecasts, recursive predicted lags/direct multi-horizon alternatives. Assess stockouts if sales used as demand. No model selection/production endorsement from contaminated metrics."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-forecasting",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "forecasting\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-survival",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "survival\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-generative",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "generative\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-controlled-experiments",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "controlled-experiments\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

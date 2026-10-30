@@ -1,0 +1,68 @@
+{
+  "stage": "data",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "DATA-001",
+      "title": "Potential repeated observations",
+      "scope": "dataset",
+      "applies_when": {
+        "duplicate_rows": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Determine ingestion copies versus genuine repeated events and their grouping/split implications before deletion."
+      },
+      "rationale": "Identical rows may represent different legitimate events.",
+      "reference": "skills/data/references/acquisition.md",
+      "cite": [
+        {
+          "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html",
+          "section": "Potential repeated observations"
+        }
+      ]
+    },
+    {
+      "id": "DATA-002",
+      "title": "No observed variation",
+      "scope": "column",
+      "applies_when": {
+        "is_constant": true
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Inspect sample coverage, missingness, source failures and schema role; compare removal only where appropriate."
+      },
+      "rationale": "A constant observed value in this extract does not prove future constancy or an unnecessary schema field.",
+      "reference": "skills/data/references/acquisition.md",
+      "cite": [
+        {
+          "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.nunique.html",
+          "section": "No observed variation"
+        }
+      ]
+    },
+    {
+      "id": "DATA-003",
+      "title": "Identifier-like name",
+      "scope": "column",
+      "applies_when": {
+        "is_identifier": true
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Verify keys and entity repetition; preserve grouping/join information and audit candidate feature use for the actual deployment claim."
+      },
+      "rationale": "Naming heuristics do not prove uniqueness or semantic role.",
+      "reference": "skills/evaluation/references/labels-splits.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+          "section": "Identifier-like name"
+        }
+      ]
+    }
+  ]
+}

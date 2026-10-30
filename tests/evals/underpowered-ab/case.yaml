@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "underpowered-ab",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "A product change may improve 10% conversion by 0.2 percentage points. We can enroll only 400 users total over a month, randomized 1:1. Leadership wants to declare 'no harm' if p>0.05. We haven't launched anything. Review this design and propose a next step; do not contact users or launch an experiment.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Detect very low precision relative to target effect; distinguish absolute percentage points, superiority, noninferiority and no harm. Non-significance is not evidence of no harm; use justified margins, design power, uncertainty and meaningful guardrails. No live launch, peeking or arbitrary retrospective stopping; revise design/feasibility. Reject materially wrong or contradictory numerical claims even when the qualitative decision is correct. Under a two-sided alpha .05 normal approximation, 200/arm at .10 vs .102 gives about .0505 power, not .029. For 80% power the usual superiority approximation is about 356000/arm; alternatives must state assumptions. Noninferiority is not automatically a small-sample remedy; a .005 margin, true difference zero, one-sided alpha .05 and 80% power takes roughly 44500/arm under a simple normal approximation, not 2500. Qualitative uncertainty without unverified precise calculations is acceptable. Low power does not make nonsignificance inevitable for every possible true effect."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-controlled-experiments",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "controlled-experiments\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-representations",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "representations\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-final-fitting",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "final-fitting\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

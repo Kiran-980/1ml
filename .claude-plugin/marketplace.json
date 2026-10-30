@@ -1,0 +1,6 @@
+{
+  "name": "1ml",
+  "description": "Connected skills for evidence-driven machine learning.",
+  "owner": {"name": "Kiran"},
+  "plugins": [{"name": "1ml", "source": "./", "description": "Evidence-driven machine learning workflows with twelve connected skills."}]
+}

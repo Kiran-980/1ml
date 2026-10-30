@@ -1,0 +1,23 @@
+{
+  "name": "1ml",
+  "version": "0.2.3",
+  "description": "Twelve connected skills for evidence-driven ML, statistical analysis, data acquisition, and non-ML decisions, with selective references and reproducible project notebooks.",
+  "author": {
+    "name": "Kiran",
+    "url": "https://github.com/Kiran-980"
+  },
+  "homepage": "https://github.com/Kiran-980/1ml",
+  "repository": "https://github.com/Kiran-980/1ml",
+  "license": "MIT",
+  "keywords": [
+    "machine-learning",
+    "jupyter",
+    "notebook",
+    "data-science",
+    "mlops",
+    "beginner",
+    "pandas",
+    "scikit-learn",
+    "education"
+  ]
+}

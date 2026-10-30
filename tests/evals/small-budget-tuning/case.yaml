@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "small-budget-tuning",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "Our renewal model has 18 positives in the validation set and repeated observations per customer. We have two CPU hours. Can Optuna automatically choose the best model and make it ready for production? Recommend a tuning strategy and evidence needed afterward. The final holdout has not been inspected; no code execution needed today.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Explain Optuna automates bounded search not scientific validity. Establish baseline, group-respecting inner splits and fold-local transforms; sparse validation support/uncertainty may favor simpler search/collection. Fixed objective and compute/trial budget, logs/seeds/failed trials and pruning comparability. No final-test tuning or best-trial release claim."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-search-diagnosis",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "search-diagnosis\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-survival",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "survival\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-controlled-experiments",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "controlled-experiments\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Finish the store-item overview
+
+Use the supplied `plugin/skills/explore/SKILL.md` and only the references relevant to this descriptive task. Finish the existing sales overview so a merchandiser can identify which active stores and items account for the largest daily sales. This is a small descriptive report, not a forecasting or model-training project.
+
+`inputs/sales.csv` contains synthetic daily unit sales and the store activity flag. Limit the overview to active stores and items observed on at least three distinct dates in that population. Show mean daily units for each retained store-item pair. Arrange both rows and columns by descending mean sales, with numeric ID ascending to break ties. Inspect the existing `chart.py`, execute your revised analysis, and visually review the delivered chart. Keep the input unchanged.
+
+Deliver `chart.py`, `heatmap.png` and a brief `summary.md` explaining the inspected population, findings, limitations and any repairs. A small notebook is optional if it helps this narrow task. Keep `chart.py` import-safe and expose `build_figure()` returning a Matplotlib Figure; save `heatmap.png` with `figure.savefig('heatmap.png', dpi=150)`. Keep selected dependencies in `requirements.txt`. Record actual skill/reference paths read and the verification you performed in `usage.json`. Choose implementation details yourself.
+
+Work only in this actor directory. The plugin snapshot and inputs are read-only task sources. Do not inspect evaluator files, other runs or competition results; do not create subagents or access external services. All shell commands start with `rtk`. Available Python packages include pandas, NumPy and Matplotlib. Use run-local temporary/cache paths and host execution only if Windows blocks an authorized operation. The parent will review only after you finish and will not repair your artifacts.

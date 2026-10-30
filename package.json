@@ -1,0 +1,30 @@
+{
+  "name": "1ml",
+  "version": "0.2.3",
+  "private": true,
+  "description": "Evidence-driven machine learning skills for coding agents",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kiran-980/1ml.git"
+  },
+  "keywords": [
+    "pi-package",
+    "agent-skills",
+    "machine-learning"
+  ],
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  },
+  "files": [
+    "skills/",
+    "references/",
+    "rules/",
+    "tools/",
+    "requirements.txt",
+    "README.md",
+    "LICENSE"
+  ]
+}

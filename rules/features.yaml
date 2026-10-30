@@ -1,0 +1,48 @@
+{
+  "stage": "features",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "FEAT-001",
+      "title": "Datetime representation",
+      "scope": "column",
+      "applies_when": {
+        "kind": "datetime"
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Establish decision-time availability, origin and meaning before comparing raw, elapsed or calendar representations."
+      },
+      "rationale": "Datetime presence alone does not select a chronological split or a particular feature.",
+      "reference": "skills/prepare/references/features-checks.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "section": "Datetime representation"
+        }
+      ]
+    },
+    {
+      "id": "FEAT-002",
+      "title": "Candidate input availability",
+      "scope": "dataset",
+      "applies_when": {
+        "n_rows": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Audit each candidate feature against decision-time sources and evaluate learned feature selection within training folds."
+      },
+      "rationale": "Post-outcome and globally selected features can leak evaluation information.",
+      "reference": "skills/prepare/references/features-checks.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "section": "Candidate input availability"
+        }
+      ]
+    }
+  ]
+}

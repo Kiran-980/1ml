@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "capacity-overload",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "Our frozen fraud scorer meets its holdout AUROC target. At the selected threshold it generates 2,000 reviews daily, but the team can handle 500. The dashboard excludes timeouts and abstentions from the denominator. Is this release evidence sufficient? Review only; do not deploy.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "AUROC insufficient for policy capacity and full-system coverage. Include timeouts/abstentions denominators and fallback outcomes, measure precision/recall/cost at capacity and slice/load behavior. Threshold changes are new policy selection needing appropriate validation; block unsupported release, no silent dropping."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-system-evidence",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "system-evidence\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-survival",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "survival\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-generative",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "generative\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

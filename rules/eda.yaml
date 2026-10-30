@@ -1,0 +1,51 @@
+{
+  "stage": "eda",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "EDA-001",
+      "title": "Skewed observed numeric distribution",
+      "scope": "column",
+      "applies_when": {
+        "kind": "numeric",
+        "numeric.skew": {
+          "gt": 1
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Inspect units, domain, valid extremes and candidate sensitivity; compare a transform only when justified."
+      },
+      "rationale": "Skew is an observation, not proof that a model needs normal inputs.",
+      "reference": "skills/statistics/references/diagnostics.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/preprocessing.html",
+          "section": "Skewed observed numeric distribution"
+        }
+      ]
+    },
+    {
+      "id": "EDA-002",
+      "title": "IQR tail observations",
+      "scope": "column",
+      "applies_when": {
+        "outlier_fraction": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Distinguish measurement errors from meaningful rare cases before filtering or clipping."
+      },
+      "rationale": "An IQR fence does not identify errors.",
+      "reference": "skills/explore/references/question-led-eda.md",
+      "cite": [
+        {
+          "url": "https://www.itl.nist.gov/div898/handbook/eda/eda.htm",
+          "section": "IQR tail observations"
+        }
+      ]
+    }
+  ]
+}

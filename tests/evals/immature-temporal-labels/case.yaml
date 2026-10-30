@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "immature-temporal-labels",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "We score card transactions at event time for existing customers tomorrow. Customers recur, fraud labels arrive up to 60 days later, and the latest month is currently labeled zero if no fraud report exists. Can we randomly split rows to pick a model? Propose labels and validation design; no fitting today.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Event-time availability and chronological future deployment claim; unknown immature labels are not negatives. Define maturity/eligibility using observation cutoff, horizon and label availability at each historical fit. Inner CV obeys temporal boundaries. Fail if the answer substitutes an unseen-customer claim or requires customer-disjoint evaluation for the explicitly existing-customer deployment. Dependence requires appropriate uncertainty, not automatic entity exclusion. Reporting delay does not itself define the outcome. Fail random customer assignment presented as chronological splitting, or code that only asserts a gap without creating time partitions. Maximum transaction time alone is not a verified observation cutoff."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-labels-splits",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "labels-splits\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-packaging-rollout",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "packaging-rollout\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-generative",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "generative\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "stage": "validate",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "VAL-001",
+      "title": "Evaluation must match the claim",
+      "scope": "dataset",
+      "applies_when": {
+        "n_rows": {
+          "gt": 0
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Verify independent units, time, source overlap, label maturity and intended use before choosing or checking a split."
+      },
+      "rationale": "Neither row count nor dtype proves a random/stratified/time split is valid.",
+      "reference": "skills/evaluation/references/labels-splits.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+          "section": "Evaluation must match the claim"
+        }
+      ]
+    },
+    {
+      "id": "VAL-002",
+      "title": "Binary outcome may require probabilities or actions",
+      "scope": "target",
+      "applies_when": {
+        "n_unique": {
+          "eq": 2
+        }
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Verify probability versus ranking/action requirements; inspect calibration only when relevant and preserve independent evaluation."
+      },
+      "rationale": "Ranking quality and probability calibration are different properties.",
+      "reference": "skills/validate/references/system-evidence.md",
+      "cite": [
+        {
+          "url": "https://scikit-learn.org/stable/modules/calibration.html",
+          "section": "Binary outcome may require probabilities or actions"
+        }
+      ]
+    }
+  ]
+}

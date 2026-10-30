@@ -1,0 +1,46 @@
+{
+  "stage": "frame",
+  "kind": "investigation_hints",
+  "rules": [
+    {
+      "id": "FRAME-001",
+      "title": "Target is unspecified",
+      "scope": "dataset",
+      "applies_when": {
+        "has_target": false
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Determine whether the question needs a supervised outcome, a descriptive/unsupervised route, or acquisition. Reuse confirmed intent before asking."
+      },
+      "rationale": "A missing target does not prohibit descriptive or unsupervised analysis.",
+      "reference": "skills/frame/references/feasibility.md",
+      "cite": [
+        {
+          "url": "https://developers.google.com/machine-learning/problem-framing/ml-framing",
+          "section": "Target is unspecified"
+        }
+      ]
+    },
+    {
+      "id": "FRAME-002",
+      "title": "Target name was inferred",
+      "scope": "target",
+      "applies_when": {
+        "inferred": true
+      },
+      "recommend": {
+        "action": "inspect",
+        "detail": "Verify outcome meaning, prediction time and horizon from project evidence; ask only if unresolved."
+      },
+      "rationale": "A name match cannot establish the intended outcome.",
+      "reference": "skills/evaluation/references/task-contract.md",
+      "cite": [
+        {
+          "url": "https://developers.google.com/machine-learning/problem-framing/ml-framing",
+          "section": "Target name was inferred"
+        }
+      ]
+    }
+  ]
+}

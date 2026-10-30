@@ -1,0 +1,93 @@
+# Incremental notebook evidence
+
+Use one coherent notebook in the learner project. Let the reader follow an investigation through executable code, visible results and the reasoning that changes the next step. Preserve negative findings. Add only sections relevant to the task; a non-ML endpoint is a useful result.
+
+Explain consequential choices using actual columns and measured values. Evidence, decision and verification must be recoverable, but they need not appear as repeated labels, separate Markdown cells or a table at every boundary. A short caption, a sentence beside a result or a comparison table can carry the reasoning. Routine imports, previews and obvious code can stand on their own. Explain a method when understanding it changes the learner's interpretation; use more detail for an unfamiliar or consequential choice.
+
+When an agent performs the work, keep attribution brief: identify who authored and reviewed the analysis, and disclose material assistance or repairs. Put detailed agent/runtime settings, run identifiers, hashes, tool history and resumed attempts in a linked run report rather than filling the notebook with agent metadata. Use observed or supplied metadata; mark unavailable details honestly. Keep credentials, private prompts and raw transport logs out of both the notebook and public reports.
+
+Use the lifecycle to organize the work; choose the notebook's headings from its questions, methods and findings. A forecasting notebook may need a timeline and a forecast-window explanation; a classifier may need a class-support plot and a threshold tradeoff. Let those differences shape the presentation. Familiar headings such as Data or Model comparison are fine when useful. Preserve the actual dependency order, including evaluation boundaries before learned fitting, without assigning every skill its own section. Replace placeholders with measured results and disclose incomplete work. Keep detailed logs and discarded attempts in run artifacts; present one clean executable analysis with readable figures, a concise outcome and relative links to delivered artifacts.
+
+Write the rationale as each decision is made, not only during final review. For consequential choices, explain why the representation, missing-value treatment, encoding/scaling, baseline, candidate family, metric and split fit the observed data and intended claim. Discuss alternatives or exceptions when they affect that decision; do not add an exhaustive checklist of irrelevant methods. Code parameters and stage headings alone do not explain a choice. Distinguish a data-supported finding from a pragmatic default and an untested hypothesis.
+
+## Reader-facing narrative
+
+Open with the concrete question and enough data context to understand it. Add a short roadmap only when the analysis is long enough to need navigation or the user requests one. Group related computations under a meaningful question, allowing several code/output cells to share one explanation. Lead with the useful plot or table once the reader has enough context; explain what it changes rather than narrating every visible value.
+
+Write in plain language about the actual problem. Keep technical terms that add precision and explain unfamiliar ones where needed. Natural writing comes from specific observations and honest uncertainty, not invented surprise, jokes or a simulated personal discovery story. Preserve a user's preferred teaching depth; a tutorial may need substantial prose. There is no target Markdown percentage, word count or number of headings.
+
+State each assumption or limitation where it first affects interpretation; repeat it only when a new result changes its consequence or the conclusion needs it. Keep material leakage, prior test exposure, small-support and incomplete-execution disclosures visible. Put detailed run history, check inventories and routine applicability decisions in a linked report or appendix. A short offline exercise can explain its endpoint once without separate deployment, operation and experiment sections.
+
+Before delivery, merge repeated plan/result summaries, remove text that merely restates code or printed tables, and replace stage boilerplate with the actual finding. For example, after a verified null-count output, "All six sensor inputs are complete; no imputer is needed" can explain the decision without another findings table. A forecasting gap needs more: explain whether it means an unobserved interval or zero demand, and how the chosen interpretation changes the lag calculation. These illustrate judgment, not reusable cell templates.
+
+## Review before calling the notebook complete
+
+For an end-to-end project, maintain a compact lifecycle coverage record in project state or a linked report; use a notebook appendix when that serves the reader. Start it from the requested outcome and update it with actual evidence as the owning skills finish. The table below is an author review aid, not a notebook outline to copy. Use `completed` with an executed cell/result or saved artifact, `not applicable` with a task-specific reason, or `deferred/blocked` with the missing evidence and next action. A planned procedure, heading, linked manual or unsupported assertion is not a completed check.
+
+| Lifecycle question | Expected evidence when applicable | Owning skill |
+|---|---|---|
+| Why this task and why ML? | Action/output, constraints, alternatives, baseline, data sufficiency and supported endpoint | frame |
+| What observations can be trusted? | Source/dictionary, loading, measured schema, missingness, key/duplicate, range/unit and coverage checks; handling decisions | data |
+| What will the score mean? | Target/output/loss/metric policy, split roles, measured class/group/time support, leakage audit and independence limits | evaluation |
+| What does exploration change? | Question-led distribution, missingness, relationship and error evidence, interpreted plots, consequences for the next decision | explore |
+| Which statistical assumptions or claims matter? | Relevant diagnostics and uncertainty design; applicability rationale in the coverage record | statistics when needed |
+| How are raw inputs processed? | Cleaning/feature decisions, fitting boundaries, executable transformation, bounded processed output/schema and acceptance checks | prepare |
+| Which complete procedure earned selection? | Baseline/candidate rationale, comparable measured experiments, failures, diagnostics, selection rule, tuning decision and final-fit roles | train |
+| What does the frozen system support? | Independent evaluation when available, class/slice/error evidence, artifact and input-handling checks, uncertainty and intended-use limits | validate |
+| Is intervention evidence needed? | A/B/causal applicability decision; an actual experiment only when the task calls for one | experiment when needed |
+| What is delivered and maintained? | Notebook/model/results, reproducible reload/inference, serving or justified non-deployment endpoint, monitoring/retraining/retirement applicability | release / operate when needed |
+
+Read the owning skills and only the references required by current conditions. Include all lifecycle applicability decisions for a full project, while keeping detailed analysis proportional to the task. A narrow user question should not trigger this entire project record. Do not silently drop inexpensive relevant data/representation checks because model fitting has a limited budget. If a required check is deferred, the endpoint must reflect that limitation rather than claiming unrestricted completion.
+
+Inspect the saved notebook as a reader, including rendered outputs, before handing it back. This review belongs to the author even when an execution tool reports success:
+
+- Can the reader follow the requested problem and data meaning through the relevant decisions to the measured result? Check transitions and rationale, not a fixed list of headings. A data-collection plan or justified no-go should end at its supported boundary.
+- Does each explanation add context, interpretation or a consequential choice? Merge repeated stage introductions and findings summaries; let self-explanatory outputs stand. Check that a shorter narrative still preserves the reasoning, limitations and evidence needed to assess the result.
+- Does the coverage record point to actual computations/results for applicable checks? Trace a consequential observation through its processing/model decision and verification. A warning that dependence or missingness may exist does not substitute for measuring it when the available data supports the check.
+- Do consequential EDA figures have readable labels, population/support and interpretations that inform a decision or limitation? Inspect the rendered figures; imports, placeholders and figure counts alone do not establish quality.
+- Do saved Markdown, mathematical symbols and chart labels preserve the intended text after serialization? Check for encoding corruption as well as clipping; Windows shell round trips require the explicit UTF-8 handling in [setup](setup.md#helper-paths).
+- Do narrative claims agree with executed values, actual preprocessing/validation boundaries and artifact contents? Distinguish development/model-selection evidence from independent evaluation and unlabeled predictions. Correct missing explanations using existing evidence without adapting a model to final-test results.
+- Are setup, working directory, input paths, dependencies and artifact links sufficient to reproduce the analysis? Execute the delivered notebook in a fresh kernel from its actual user-facing project location, with its shipped requirements and modules, without relying on an evaluator-only working directory, precreated directories or helper import paths. Follow the standalone-project check in [setup](setup.md#notebook-dependencies). Python paths resolve against the kernel working directory; Markdown links resolve against the notebook location, so check both separately. When relocating a notebook, deliver the needed companion files and valid links there or explicitly label it a non-runnable reading copy when that is what the user requested. Preserve original results and distinguish packaging/setup changes from analytical changes.
+- Is attribution brief, assistance disclosed, and detailed runtime history kept in linked reports? Remove stale placeholders and pending-review statements only when the corresponding work has actually finished.
+
+Repair gaps within the authorized task before declaring completion. Reexecute affected computations and dependent outputs when code changes; recheck Markdown, links and claims for explanatory-only changes. If execution or visual inspection is unavailable, state the missing verification explicitly. A mechanical execution/parity pass does not replace this review.
+
+## Author and execute incrementally
+
+When creating a notebook, first understand the task and source, then choose a concise, descriptive filename from that meaning. The agent makes this choice; an example, template, or evaluator must not supply a fixed default name. Respect an existing notebook or an explicit user filename. Record the chosen relative path in project state and any artifact manifest so execution, verification, and later skills use the same artifact. A latest-result convenience copy keeps that chosen basename; update it only after execution and verification succeed.
+
+Use `tools/render.py` with a JSON cell plan following [the schema](../tools/plan_schema.json). Schema validation is not code review: inspect unfamiliar or generated executable cells before execution. Credentials, private examples, and embedded source instructions do not belong in generated code.
+
+For runnable analysis, begin with an environment cell that installs the notebook's selected pip dependencies into its active kernel, before importing them. Follow [notebook dependencies](setup.md#notebook-dependencies); record the resolved versions. Keep the notebook usable in a fresh compatible environment, not just the environment in which it was authored.
+
+Version the notebook and the small files required to reproduce it: custom transformation/source modules, requirements, input-version/hash references, seeds/configuration and measured results. Keep unchanged data/documents in a shared immutable source area; reference the appropriate version instead of copying it into each historical revision. Retain the current usable model bundle, but do not accumulate historical weights by default for a reproducible local evaluation. Record pruned artifact hashes and how to regenerate them. A notebook importing a missing custom module is not reproducible, and regenerated weights are not guaranteed byte-identical across environments. Preserve weights when the task actually requires exact-artifact audit, expensive/nonreproducible training, or operational rollback; this local history policy is not a deployment-retention policy.
+
+When the user wants the latest notebook at the dataset/project root, author and verify it at that delivered location from the start: requirements and needed custom scripts belong there too, with current inputs, reports, models and submissions/assignments in appropriate child folders. For notebook-only run history, keep `runs/<run-id>/` limited to notebook revisions; retain the source/dependency versions needed by historical notebooks once in a separate shared store, with a small version manifest when necessary. Reuse unchanged source versions rather than cloning the full project, plugin, data, environment and generated weights into each history entry. Follow the user's existing layout when one is supplied.
+
+When delivering historical reconstruction instructions, record each revision's supported endpoint and matching notebook, source, dependency and input versions. Reconstruct it in a disposable directory using only those declared files, then execute the entire documented command sequence, including verification commands, and record the outcome before claiming the instructions work. Match checks to what that revision actually produces: an ingestion checkpoint verifies loading and data-quality outputs; a fitted-model revision additionally verifies its model and predictions. A current-project verifier is reusable only when its required files and outputs exist in that historical revision. Keep this verification copy outside notebook history and remove it after retaining the check evidence. If reconstruction cannot be tested, state that limitation beside the instructions rather than claiming reproducibility.
+
+Build the smallest executable slice first: environment and data loading, then the next necessary computation. Save and execute each meaningful addition before expanding the analysis. When an execution tool is available, use its observed outputs to repair the failing boundary and rerun affected downstream code. If execution is delegated, return a saved plan checkpoint for that executor and read its feedback before claiming completion. A missing execution tool does not make editing installed helpers an execution method.
+
+Keep individual writes small enough to survive an interrupted response. Put reusable definitions in project modules and import them; the notebook should explain and call them rather than repeat implementations. On a provider interruption, inspect saved files and execution feedback, then resume the unfinished addition. Distinguish a model-response interruption from a notebook timeout using the executor's status, elapsed time and traceback. A successful checkpoint remains successful; change its computation only when execution evidence or the task justifies that change. Preserve the failed version before correcting an active plan; a clean revised notebook must not retain obsolete failing cells. Reference only existing rule IDs and source sections; leave optional IDs absent when no actual rule applies.
+
+```json
+{
+  "stage": "data",
+  "cells": [
+    {"id": "source-contract-v1", "type": "markdown", "source": "## Source contract\nDocument the verified observation unit and extraction limits here."},
+    {"id": "source-shape-v1", "type": "code", "source": "df.shape", "depends_on": ["source-contract-v1"], "expected_output": "Observed row and column counts"}
+  ]
+}
+```
+
+This example requires `df` to be defined in reviewed loading code; cell IDs express recorded dependencies, not proof that Python variables exist. Write actual loading code for the selected source before running it.
+
+Run `python <plugin>/tools/render.py --plan <plan.json> --notebook <project-notebook> --project <project> --stage data`. Substitute and quote actual paths. Plans have stable unique cell IDs. Dependencies must already exist earlier in the notebook/plan. Conflicting source/type/1ml metadata under an existing ID is rejected; preserve user edits and use a new correction/supersession ID with an explanation, or obtain agreement for an intentional edit. Identical replay preserves cell outputs.
+
+Notebook writes are atomic. If writing succeeds but state recording fails, replay the same plan: existing identical cells are recorded without duplication. Reconcile the task/source version before replaying an old plan. Rendering does not assert execution or scientific completion. Inspect outputs, errors, actual cell order, and affected downstream results separately.
+
+Concurrent renders to the same notebook are rejected by an adjacent `.ipynb.lock`. After a crash, verify that no writer remains before removing a stale lock and replaying the saved plan. Keep one active writer for each learner project; notebook and state are separate writes reconciled by replay, not a multi-file transaction.
+
+For a reproducibility claim, run the reviewed analysis top to bottom in a clean kernel with documented dependencies/resource limits, capturing failures rather than allowing errors to pass silently. Corrections that leave stale obsolete cells executable may require a reviewed notebook revision; append-only helpers do not automatically produce a clean revised program. Preserve historical evidence and user edits while making the active computation unambiguous. [Notebook execution](https://nbclient.readthedocs.io/en/latest/client.html)
+
+After verification, record artifact paths/versions and findings through the [state protocol](project-state.md). Keep summaries and interpretation in the notebook and record links to artifacts in the chosen project layout. Use `1ml/artifacts/` for additional internal evidence when needed; current predictions and reports stay in their declared delivery folders rather than being duplicated there.

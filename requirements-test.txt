@@ -1,0 +1,6 @@
+-r requirements.txt
+nbclient>=0.10,<1
+ipykernel>=6,<8
+scikit-learn>=1.4,<2
+matplotlib>=3.8,<4
+psutil>=7,<8

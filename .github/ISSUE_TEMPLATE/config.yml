@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/Kiran-980/1ml/security/advisories/new
+    about: Report security vulnerabilities without posting details publicly.

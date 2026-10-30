@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "1ml cell plan",
+  "description": "The only write surface Claude uses to change a learner notebook.",
+  "type": "object",
+  "required": ["stage", "cells"],
+  "additionalProperties": false,
+  "properties": {
+    "stage": {
+      "type": "string",
+      "enum": [
+        "frame",
+        "metrics",
+        "data",
+        "eda",
+        "preprocess",
+        "features",
+        "model",
+        "validate",
+        "deploy",
+        "monitor",
+        "retrain"
+        , "evaluation", "explore", "statistics", "prepare", "train", "experiment", "release", "operate"
+      ]
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/cell" }
+    },
+    "questions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "conclusions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/decision" }
+    }
+  },
+  "$defs": {
+    "cell": {
+      "type": "object",
+      "required": ["id", "type", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "type": { "enum": ["markdown", "code"] },
+        "source": { "type": "string", "minLength": 1 },
+        "depends_on": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "expected_output": { "type": "string" },
+        "teaches": { "type": "string" },
+        "cites": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rule_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "rule_id": { "type": "string" },
+        "rationale": { "type": "string" },
+        "citations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": { "enum": ["high", "medium", "low"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "refit-after-calibration",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "We trained a binary risk model on partition A, fit an isotonic calibrator on B, chose a capacity-constrained review threshold on C, and evaluated the combined system once on D. The engineer then retrained the base model on A+B+C and kept the same calibrator and threshold. Can we ship that bundle using the D score? Explain the decision and an actionable validation route; no execution or deployment today.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Recognize changed base scores invalidate calibration/threshold compatibility and old D exact-bundle evidence. Explain calibration and policy/final evaluation roles must be renewed or appropriately cross-fitted with clean lineage. Cannot call D untouched after adaptive use. Offer retaining original validated frozen bundle if appropriate; no automatic release."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-final-fitting",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "final-fitting\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-forecasting",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "forecasting\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-causal",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "causal\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.1",
+  "name": "deterministic-lookup",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "Our shipping eligibility decision is exactly the legal team's versioned table of destination_country and product_code. All requests have both values and the authoritative table is complete. Management wants ML because it sounds more advanced. Is an ML project useful here? Recommend what to build and when that decision might change. Please answer the design question only.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Choose deterministic versioned lookup with validation/tests/unknown handling appropriate to source changes, no training lifecycle. Explain no incremental predictive uncertainty to solve and ML could introduce error; future uncertainty or incomplete rules may change feasibility. No forced data minimum or model search."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-feasibility",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "feasibility\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-search-diagnosis",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "search-diagnosis\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-representations",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "representations\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-packaging-rollout",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "packaging-rollout\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

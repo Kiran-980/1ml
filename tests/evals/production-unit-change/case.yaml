@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "production-unit-change",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "At 10:00 yesterday the source switched transaction_amount from dollars to cents. The fraud service still expects dollars and alerts jumped 80-fold. Fraud labels take 45 days to mature; none are available for yesterday. Should we retrain on yesterday's traffic now? We need an incident recommendation only, not changes to production.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Diagnose known schema/unit contract break, not proven concept drift. Prioritize safe fallback/repair source transform, version checks/replay and parity, incident records, monitor recovery. Do not retrain first or label immature records negative; don't execute live changes."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-monitoring-recovery",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "monitoring-recovery\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-controlled-experiments",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "controlled-experiments\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-survival",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "survival\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.1",
+  "name": "unseen-sites",
+  "description": "Instruction/decision probe; not numerical execution certification.",
+  "plugins": [
+    "../../.."
+  ],
+  "runs": 1,
+  "execution": {
+    "prompt": "We want a classifier for hospitals we have never served. Our dataset contains three hospitals. All 24 positive outcomes are at hospital A; B and C have zero positives. My teammate proposes stratified random cross-validation so every fold has positives and AUC works. Is that evaluation acceptable? Recommend the next action. This is an evaluation-design review only.",
+    "max_turns": 16,
+    "timeout_seconds": 240,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "scientific-decision",
+      "type": "llm",
+      "focus": "last_message",
+      "criteria": "Reject random row split as evidence for unseen hospitals. Explain site/outcome confounding and limited independent support; some folds have undefined class discrimination and training folds can lack positives. Do not average away undefined scores. Recommend acquiring independent site/event coverage or explicitly narrowing claim; don't claim unseen-site performance proven."
+    },
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "1ml:",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "read-inner-validation",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "inner-validation\\.md",
+      "min": 1,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-representations",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "representations\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-packaging-rollout",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "packaging-rollout\\.md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    },
+    {
+      "name": "skip-project-bookkeeping",
+      "type": "tool_used",
+      "tool": "Read",
+      "input_match": "project-state[.]md|notebook-protocol[.]md",
+      "min": 0,
+      "max": 0,
+      "arm": "with-only"
+    }
+  ]
+}

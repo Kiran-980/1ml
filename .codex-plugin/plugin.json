@@ -1,0 +1,13 @@
+{
+  "name": "1ml",
+  "version": "0.2.3",
+  "description": "Twelve connected skills for evidence-driven machine learning and reproducible notebooks.",
+  "author": {
+    "name": "Kiran",
+    "url": "https://github.com/Kiran-980"
+  },
+  "homepage": "https://github.com/Kiran-980/1ml",
+  "repository": "https://github.com/Kiran-980/1ml",
+  "license": "MIT",
+  "skills": "./skills/"
+}
