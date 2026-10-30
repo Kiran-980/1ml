@@ -10,7 +10,7 @@ Build readable, reproducible machine learning notebooks with **Codex, Claude Cod
 
 **Free and open source under MIT.** No 1ml subscription, account or paid tier is required. Your coding agent, model provider and compute may have their own costs.
 
-[Install](#install) · [Try your first project](docs/getting-started.md) · [See examples](docs/examples.md) · [Browse ML tasks](docs/machine-learning-skills.md) · [Contribute](CONTRIBUTING.md)
+[Website](https://kiran-980.github.io/1ml/) · [Install](#install) · [Try your first project](docs/getting-started.md) · [See examples](docs/examples.md) · [Browse ML tasks](docs/machine-learning-skills.md) · [Contribute](CONTRIBUTING.md)
 
 ## See what you can make
 
