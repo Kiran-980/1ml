@@ -1,29 +1,28 @@
-# 1ml — Machine learning skills for AI coding agents
+# 1ml — Free machine learning skills for AI coding agents
 
-**Machine learning skills for classification, regression, time series forecasting, clustering and reproducible Jupyter notebooks.**
+[![Validate 1ml](https://github.com/Kiran-980/1ml/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/Kiran-980/1ml/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/Kiran-980/1ml)](https://github.com/Kiran-980/1ml/releases)
 
-Use 1ml with Codex, Claude Code and other coding agents to choose sound baselines, prevent data leakage and turn model results into readable notebooks.
+Build readable, reproducible machine learning notebooks with **Codex, Claude Code and other coding agents**. Twelve connected skills guide classification, regression, time series forecasting, clustering, exploratory data analysis and model evaluation.
 
-1ml helps a coding agent turn a business question and available data into a justified analysis, reproducible notebook, and tested model when ML is appropriate. A collection plan, statistical report, deterministic solution, or retained baseline can also be the right result.
+1ml helps your agent choose useful baselines, prevent data leakage and explain what the results actually support. It can also conclude that a rule, statistical analysis or existing baseline is enough.
 
-Twelve connected skills cover the classical ML lifecycle, from exploratory data analysis and feature engineering to model evaluation and monitoring. Decisions follow the data and intended claim; every dataset does not need the same checklist. Generative AI workflows are outside the current focus.
+**Free and open source under MIT.** No 1ml subscription, account or paid tier is required. Your coding agent, model provider and compute may have their own costs.
 
-## Classification, regression and time series workflows
+[Install](#install) · [Try your first project](docs/getting-started.md) · [See examples](docs/examples.md) · [Browse ML tasks](docs/machine-learning-skills.md) · [Contribute](CONTRIBUTING.md)
 
-| Machine learning task | What 1ml helps the agent decide |
-| --- | --- |
-| **Classification** | Binary or multiclass labels, class imbalance, grouped or stratified validation, precision/recall and probability calibration |
-| **Regression** | Numeric targets, simple baselines, MAE/RMSE, target transformations and residual analysis |
-| **Time series forecasting** | Forecast horizon, chronological backtesting, seasonal baselines and features available at prediction time |
-| **Clustering** | Scaling and distance choices, cluster stability and whether the groups answer a useful question |
-| **Exploratory data analysis** | Missing values, distributions, relationships, outliers and useful charts |
-| **Model evaluation** | Data leakage, cross-validation, held-out tests, error analysis and reproducibility |
+## See what you can make
 
-See [machine learning use cases and example prompts](docs/machine-learning-skills.md) for classification, regression, time series and unsupervised learning projects. 1ml guides the coding agent's analysis; the agent writes and runs the project code in your chosen environment.
+[**Can tweet text identify real disasters?**](https://www.kaggle.com/code/kiranganaparapu/can-tweet-text-identify-real-disasters) is a public text-classification notebook made with 1ml. Read the analysis on Kaggle to see the output, then use the [example guide](docs/examples.md) to start your own classification, regression or forecasting project. One notebook is an example, not a guarantee of future results.
 
-## Start here
+Notebooks follow the problem's questions and findings. The lifecycle guides the work without forcing identical headings or a Markdown block around every cell.
 
-Claude Code:
+## Install
+
+### Claude Code
+
+Run inside Claude Code:
 
 ```text
 /plugin marketplace add Kiran-980/1ml#main
@@ -31,103 +30,70 @@ Claude Code:
 /1ml:lifecycle
 ```
 
-For a local checkout: `claude --plugin-dir /absolute/path/to/1ml`.
+### Codex
 
-Install separately in each agent you use. This repository is public; cloning it does not require repository access credentials. The [installation guide](docs/installation.md) includes local alternatives, updates and verification.
+Run in your terminal with a Codex CLI version that supports plugins:
 
-[Automatic updates](docs/installation.md#automatic-updates) use the host's plugin manager: Codex refreshes Git marketplaces at startup; in Claude Code, enable auto-update for the `1ml` marketplace once.
+```sh
+codex plugin marketplace add Kiran-980/1ml --ref main
+codex plugin add 1ml@1ml
+```
 
-| Agent | Install / configure |
-|---|---|
-| [Codex](docs/installation.md#codex) | `codex plugin marketplace add Kiran-980/1ml --ref main`, then `codex plugin add 1ml@1ml` |
-| [Claude Code](docs/installation.md#claude-code) | Commands above, or the equivalent terminal CLI |
-| [Gemini CLI](docs/installation.md#gemini-cli) | `gemini extensions install https://github.com/Kiran-980/1ml --ref main` |
-| [Pi](docs/installation.md#pi) | `pi install git:github.com/Kiran-980/1ml@main` |
-| [OpenCode](docs/installation.md#opencode) | Clone and add the absolute `skills/` path to OpenCode configuration |
-| [Hermes](docs/installation.md#hermes) | Clone and add the absolute `skills/` path under `skills.external_dirs` |
+Start a fresh session and select **1ml:lifecycle** in the skill picker, or ask Codex to use it.
 
-Native installation/discovery is verified in **Codex and Claude: all 12 skills and 194 local reference links pass**. The other agents have documented installation routes, not end-to-end certification. All routes share the same skill source; see the [verification record](docs/installation.md#verified-installation).
+Then give the agent a concrete task:
 
-Example request:
+> Use 1ml to investigate customer churn in `customers.csv`. First check the target, when each feature becomes available, and whether customers repeat. Choose a suitable validation split, compare a simple baseline with justified models, and explain false positives and false negatives. Deliver an executed notebook with concise findings and reproducible dependencies.
 
-> Use 1ml to understand this dataset and decide whether ML is useful. Load it from the supplied database or URL, choose the learning task, metric and split, and compare justified baselines and models. Produce an executed notebook with concise decisions, relevant EDA, requirements, model and test results. Do not deploy or submit anything.
+No dataset ready? Follow the [small synthetic first project](docs/getting-started.md), which needs no dataset download or competition account.
+
+**Other agents:** installation routes are documented for [OpenCode](docs/installation.md#opencode), [Gemini CLI](docs/installation.md#gemini-cli), [Pi](docs/installation.md#pi) and [Hermes](docs/installation.md#hermes). Native installation and discovery were verified in Codex and Claude Code; other routes are not end-to-end certified. Keep the complete repository together so shared references work.
+
+See the [installation guide](docs/installation.md) for verification, local alternatives and [automatic updates](docs/installation.md#automatic-updates). All published installation commands follow `main`.
+
+## Choose a machine learning task
+
+| Task | What the skills help you decide |
+| --- | --- |
+| [Classification](docs/machine-learning-skills.md#classification-skills) | Labels, class imbalance, precision/recall, calibration and appropriate validation |
+| [Regression](docs/machine-learning-skills.md#regression-skills) | Numeric targets, simple baselines, MAE/RMSE and residual analysis |
+| [Time series forecasting](docs/machine-learning-skills.md#time-series-forecasting-skills) | Forecast horizon, chronological backtesting, seasonal baselines and available features |
+| [Clustering](docs/machine-learning-skills.md#clustering-and-unsupervised-learning-skills) | Scaling, distance, stability and whether groups answer a useful question |
+| [EDA, statistics and model evaluation](docs/machine-learning-skills.md#data-analysis-statistics-and-model-evaluation) | Missingness, useful charts, uncertainty, cross-validation and error analysis |
 
 ## Connected, independently usable skills
 
-| Skill | Decisions it owns |
-|---|---|
-| [lifecycle](skills/lifecycle/SKILL.md) | Start/resume, select the next owner, reconcile evidence and deliverables |
-| [frame](skills/frame/SKILL.md) | Business action, learning family, feasibility, no-ML alternatives |
-| [data](skills/data/SKILL.md) | Collection, loading, joins, labels, lineage and quality |
-| [evaluation](skills/evaluation/SKILL.md) | Metrics, baselines, time/group boundaries and test roles |
-| [explore](skills/explore/SKILL.md) | EDA, useful plots, anomalies and investigations |
-| [statistics](skills/statistics/SKILL.md) | Estimands, assumptions, uncertainty and statistical tests |
-| [prepare](skills/prepare/SKILL.md) | Missingness, encoding, scaling, features and leakage-safe pipelines |
-| [train](skills/train/SKILL.md) | Model families, tuning budgets, search and refit decisions |
-| [validate](skills/validate/SKILL.md) | Frozen evaluation, errors, robustness and supported claims |
-| [experiment](skills/experiment/SKILL.md) | Intervention design, A/B tests, power and causal limits |
-| [release](skills/release/SKILL.md) | Reproducibility, packaging and authorized rollout |
-| [operate](skills/operate/SKILL.md) | Monitoring, incident diagnosis, retraining and retirement |
+| Skill | Purpose |
+| --- | --- |
+| [lifecycle](skills/lifecycle/SKILL.md) | Start or resume a project and choose the next useful step |
+| [frame](skills/frame/SKILL.md) | Define the question, learning task and no-ML alternatives |
+| [data](skills/data/SKILL.md) | Collect, load, join and inspect data |
+| [evaluation](skills/evaluation/SKILL.md) | Define metrics, baselines and time/group boundaries |
+| [explore](skills/explore/SKILL.md) | Investigate distributions, relationships and anomalies |
+| [statistics](skills/statistics/SKILL.md) | Estimate effects and uncertainty |
+| [prepare](skills/prepare/SKILL.md) | Build preprocessing and features without leakage |
+| [train](skills/train/SKILL.md) | Compare models and manage tuning budgets |
+| [validate](skills/validate/SKILL.md) | Evaluate frozen models and review supported claims |
+| [experiment](skills/experiment/SKILL.md) | Design randomized experiments and A/B tests |
+| [release](skills/release/SKILL.md) | Package reproducible results and authorized releases |
+| [operate](skills/operate/SKILL.md) | Monitor, diagnose and decide when to retrain |
 
-The router loads the relevant skill and conditional references as needed. A small explanation need not create a project. End-to-end work records why each applicable stage was performed, deferred or inapplicable. Predictive validation and intervention experiments answer different questions.
+The agent loads relevant instructions as needed. A small explanation need not create a project. Generative AI workflows are outside the current focus.
 
-## Expected project output
+## What to expect
 
-Notebooks follow the problem's questions and results, with explanations where they help the reader. The lifecycle guides the analysis without imposing identical headings or a Markdown block around every cell. Detailed coverage and run records can live in linked reports; consequential assumptions and limitations stay beside the findings they qualify.
+A project can include an executed notebook, requirements, metrics, predictions and a regenerable model. The agent chooses a descriptive notebook name and keeps consequential assumptions beside the findings. See [project outputs and verification](docs/project-output.md).
 
-The agent chooses a descriptive notebook name from the task. A typical project looks like:
+1ml supplies instructions and supporting Python helpers, not a hosted AutoML service or a model. The helpers require **Python 3.10+**; project dependencies are chosen and recorded by the agent. Installing 1ml does not start jobs or grant access to any account. Competition submissions, external writes and deployments require your authorization.
 
-```text
-shipment-delay/
-  shipment-delay.ipynb       # current executed notebook
-  requirements.txt
-  README.md
-  modeling.py               # when supporting modules are useful
-  models/                   # current regenerable model
-  predictions/              # or submissions/ for competitions
-  reports/                  # metrics and verification evidence
-  1ml/state.json            # workflow decisions
-  runs/01-ingestion/
-    shipment-delay.ipynb     # notebook-only history
-```
+Mechanical tests and installation checks do not establish scientific correctness. The [evaluation guide](tests/evals/README.md) and [observed results](tests/evals/results-summary.md) document the evidence and remaining limitations.
 
-Data may stay in its authorized database, URL, dataframe or local format. CSV export is not a prerequisite. Immutable inputs are shared; previous notebooks record source/dependency versions for reconstruction without historical model weights or duplicate environments. Paths, package installation and verification must work from the documented project location. See the [notebook protocol](references/notebook-protocol.md).
+## Help improve 1ml
 
-## Runtime and boundaries
+Try a real problem, share a reproducible example or report a specific failure. Improvements to notebook clarity, validation, task coverage and agent compatibility are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution ideas and checks; use [SECURITY.md](SECURITY.md) for private security reports.
 
-Python helpers require **Python 3.10+**:
+`main` is the stable default branch. Send contributions to `develop`; releases reach `main` after required checks pass. See the [changelog](CHANGELOG.md) and [releases](https://github.com/Kiran-980/1ml/releases).
 
-```sh
-python -m pip install -r requirements.txt
-```
+If 1ml helped you, sharing your notebook with a link to this repository helps other people find it. Starring the repository is optional and helps you find it again.
 
-Use a chosen environment. Modeling and notebook-execution dependencies are task-specific; the agent must record them in the learner project's requirements and provide a runnable installation cell. No datasets, credentials, paid model access, cloud services, or AutoML engine are bundled.
-
-Helpers cover state, notebook cells, rules and basic profiling. The acquisition skill supports broader source-loading decisions than the profiler CLI. See [setup](references/setup.md) and [capability boundaries](references/capabilities.md). External writes, competition submissions and deployments require the user's authorization.
-
-## Verification and development
-
-```sh
-python tools/validate_plugin.py
-python -m unittest discover -s tests -t .
-```
-
-Optional notebook integration checks need [requirements-test.txt](requirements-test.txt); missing optional dependencies produce skips. A writable `TMP`/`TEMP` may be needed on restricted Windows hosts. Validate Claude packaging with `claude plugin validate .`.
-
-Tests check implementation mechanics. [Scenario cases](tests/scenarios/decision-paths.md) and [behavioral evaluations](tests/evals/README.md) assess agent decisions separately. [Observed FCC/NVIDIA results](tests/evals/results-summary.md) include failures despite correct skill reads. Fresh Astra evaluations have also exercised tabular, forecasting, clustering and notebook delivery workflows locally; those observations do not establish unattended reliability or cross-host certification.
-
-Reusable verification code under `tests/` and `evals/` is maintainer tooling. Generated trials, notebooks, datasets, weights, local research and credentials are excluded from Git. The plugin works without ignored research or local evaluation results.
-
-Account-connected maintainer automation is managed separately. Installing 1ml does not grant account access or start scheduled jobs.
-
-## Contribute and release
-
-`main` is the repository's default branch and contains the stable plugin; a normal clone and all installation commands follow it. Use `develop` for contributions: open focused pull requests against `develop`, with relevant checks and evidence. Release changes move through a `develop` → `main` pull request after the required checks pass.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and review expectations, [SECURITY.md](SECURITY.md) for private vulnerability reports, and [CHANGELOG.md](CHANGELOG.md) for releases.
-
-## Distribution and license
-
-The repository includes a Claude marketplace catalog and host packaging metadata. A GitHub push does **not** automatically submit it to curated marketplaces. See [installation and distribution](docs/installation.md).
-
-[MIT license](LICENSE). Contributions should preserve selective loading, connected references, evidence-based decisions and runnable deliverables.
+[MIT license](LICENSE). You can use, modify and redistribute 1ml under its license terms. The repository includes its own marketplace catalog; it is not automatically listed in curated directories.
