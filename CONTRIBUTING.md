@@ -1,7 +1,7 @@
 # Contributing to 1ml
 
 Start a focused branch from `develop` and open your pull request against `develop`.
-`main` is the stable plugin source. Maintainers release through a `develop` → `main`
+`main` is the repository default and stable plugin source. Maintainers release through a `develop` → `main`
 pull request after all required checks pass.
 
 ## Set up and check a change

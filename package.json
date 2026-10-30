@@ -2,7 +2,7 @@
   "name": "1ml",
   "version": "0.2.3",
   "private": true,
-  "description": "Evidence-driven machine learning skills for coding agents",
+  "description": "Machine learning skills for classification, regression, time series forecasting, clustering and model evaluation",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,16 @@
   "keywords": [
     "pi-package",
     "agent-skills",
-    "machine-learning"
+    "machine-learning",
+    "machine-learning-skills",
+    "classification",
+    "regression",
+    "time-series",
+    "forecasting",
+    "clustering",
+    "model-evaluation",
+    "jupyter-notebook",
+    "data-science"
   ],
   "pi": {
     "skills": [

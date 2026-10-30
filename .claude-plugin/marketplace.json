@@ -1,6 +1,6 @@
 {
   "name": "1ml",
-  "description": "Connected skills for evidence-driven machine learning.",
+  "description": "Machine learning skills for classification, regression, time series forecasting and clustering.",
   "owner": {"name": "Kiran"},
-  "plugins": [{"name": "1ml", "source": "./", "description": "Evidence-driven machine learning workflows with twelve connected skills."}]
+  "plugins": [{"name": "1ml", "source": "./", "description": "Twelve machine learning skills for classification, regression, forecasting, clustering and model evaluation."}]
 }
