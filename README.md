@@ -1,12 +1,25 @@
 # 1ml — Machine learning skills for AI coding agents
 
-**Twelve connected skills for machine learning, data analysis and reproducible Jupyter notebooks.**
+**Machine learning skills for classification, regression, time series forecasting, clustering and reproducible Jupyter notebooks.**
 
 Use 1ml with Codex, Claude Code and other coding agents to choose sound baselines, prevent data leakage and turn model results into readable notebooks.
 
 1ml helps a coding agent turn a business question and available data into a justified analysis, reproducible notebook, and tested model when ML is appropriate. A collection plan, statistical report, deterministic solution, or retained baseline can also be the right result.
 
-The skills cover classification, regression, forecasting, clustering, and related classical ML workflows. Decisions follow the data and intended claim; every dataset does not need the same checklist. Generative AI workflows are outside the current focus.
+Twelve connected skills cover the classical ML lifecycle, from exploratory data analysis and feature engineering to model evaluation and monitoring. Decisions follow the data and intended claim; every dataset does not need the same checklist. Generative AI workflows are outside the current focus.
+
+## Classification, regression and time series workflows
+
+| Machine learning task | What 1ml helps the agent decide |
+| --- | --- |
+| **Classification** | Binary or multiclass labels, class imbalance, grouped or stratified validation, precision/recall and probability calibration |
+| **Regression** | Numeric targets, simple baselines, MAE/RMSE, target transformations and residual analysis |
+| **Time series forecasting** | Forecast horizon, chronological backtesting, seasonal baselines and features available at prediction time |
+| **Clustering** | Scaling and distance choices, cluster stability and whether the groups answer a useful question |
+| **Exploratory data analysis** | Missing values, distributions, relationships, outliers and useful charts |
+| **Model evaluation** | Data leakage, cross-validation, held-out tests, error analysis and reproducibility |
+
+See [machine learning use cases and example prompts](docs/machine-learning-skills.md) for classification, regression, time series and unsupervised learning projects. 1ml guides the coding agent's analysis; the agent writes and runs the project code in your chosen environment.
 
 ## Start here
 
@@ -109,7 +122,7 @@ Account-connected maintainer automation is managed separately. Installing 1ml do
 
 ## Contribute and release
 
-`develop` is the default contribution branch. `main` contains stable plugin releases; installation commands explicitly follow it. Open focused pull requests against `develop`, with the relevant checks and evidence. Release changes move through a `develop` → `main` pull request.
+`main` is the repository's default branch and contains the stable plugin; a normal clone and all installation commands follow it. Use `develop` for contributions: open focused pull requests against `develop`, with relevant checks and evidence. Release changes move through a `develop` → `main` pull request after the required checks pass.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and review expectations, [SECURITY.md](SECURITY.md) for private vulnerability reports, and [CHANGELOG.md](CHANGELOG.md) for releases.
 

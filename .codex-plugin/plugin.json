@@ -1,7 +1,7 @@
 {
   "name": "1ml",
   "version": "0.2.3",
-  "description": "Twelve connected skills for evidence-driven machine learning and reproducible notebooks.",
+  "description": "Machine learning skills for classification, regression, time series forecasting, clustering and model evaluation with reproducible notebooks.",
   "author": {
     "name": "Kiran",
     "url": "https://github.com/Kiran-980"
