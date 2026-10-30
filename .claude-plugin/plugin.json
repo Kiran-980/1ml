@@ -1,7 +1,7 @@
 {
   "name": "1ml",
   "version": "0.2.3",
-  "description": "Twelve connected skills for evidence-driven ML, statistical analysis, data acquisition, and non-ML decisions, with selective references and reproducible project notebooks.",
+  "description": "Machine learning skills for classification, regression, time series forecasting, clustering, data analysis and model evaluation, with reproducible Jupyter notebooks.",
   "author": {
     "name": "Kiran",
     "url": "https://github.com/Kiran-980"
@@ -11,6 +11,14 @@
   "license": "MIT",
   "keywords": [
     "machine-learning",
+    "machine-learning-skills",
+    "classification",
+    "regression",
+    "time-series",
+    "forecasting",
+    "clustering",
+    "model-evaluation",
+    "feature-engineering",
     "jupyter",
     "notebook",
     "data-science",
