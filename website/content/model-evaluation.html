@@ -1,0 +1,21 @@
+<header class="guide-head"><p class="breadcrumb"><a href="$base">1ml</a> / Model evaluation</p><span class="eyebrow">Know what the score supports</span><h1>Machine learning model evaluation skills.</h1><p class="lead">Review cross-validation, data leakage, metrics and holdouts with 1ml in Claude Code or Codex. Match the evaluation to the predictions you intend to make.</p></header>
+<article class="article">
+<h2>Define what “unseen” means</h2>
+<p>A random row split answers a different question from a test on new customers or a future month. If the same customer appears in training and validation, a strong score may not describe performance on customers the model has never seen.</p>
+<p>Use the <a href="$repo/blob/main/skills/evaluation/SKILL.md">evaluation skill</a> to define labels, metrics and split boundaries before model selection. Use the <a href="$repo/blob/main/skills/validate/SKILL.md">validate skill</a> to assess a frozen model and explain its supported claims afterward.</p>
+<h2>Audit an existing notebook for leakage</h2>
+<div class="prompt"><p>Use 1ml's evaluation skill to audit my customer-churn notebook. Customers have multiple monthly rows, and the intended use is predicting churn for new customers in a later period. Inspect the label window, when features become available, entity overlap and chronological boundaries. Check whether preprocessing, tuning or threshold selection uses reserved outcomes. Show evidence for each issue and propose a feasible evaluation design. If the data cannot support the intended claim, explain that limitation rather than relaxing the split to get a score.</p></div>
+<h2>Choose metrics that describe the decision</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">Task</th><th scope="col">Questions to resolve</th></tr></thead><tbody>
+<tr><td><a href="${base}classification/">Classification</a></td><td>Do you need ranking, calibrated probabilities or decisions at a threshold? What do false positives and false negatives cost?</td></tr>
+<tr><td><a href="${base}regression/">Regression</a></td><td>Are typical absolute errors or large misses more important? Report errors in units the reader can interpret.</td></tr>
+<tr><td><a href="${base}time-series-forecasting/">Forecasting</a></td><td>What horizon and forecast origin matter? Compare against seasonal baselines using chronological backtests.</td></tr>
+<tr><td><a href="${base}clustering/">Clustering</a></td><td>Are groups stable and useful? A compactness score alone does not establish a meaningful segmentation.</td></tr>
+</tbody></table></div>
+<h2>Separate selection from final evaluation</h2>
+<p>Choose models, features and decision thresholds using the permitted development evidence. Fit <a href="${base}feature-engineering/">learned preprocessing</a> inside the relevant training folds. Freeze the chosen approach before evaluating the final holdout.</p>
+<p>If final-test errors guide another model change, those outcomes have become development evidence. Report that change and establish renewed evaluation rather than calling the same test untouched. Keep undefined metrics and failed predictions visible; silently removing them can change what the score means.</p>
+<h2>Make the comparison reproducible</h2>
+<p>A useful evaluation records split identifiers or time cutoffs, target eligibility, baseline and candidate scores, relevant subgroup support and limitations. Repeated or related observations affect how much independent evidence you have. The <a href="$repo/blob/main/skills/statistics/SKILL.md">statistics skill</a> can help assess uncertainty when the design supports it.</p>
+<div class="next"><a href="${base}getting-started/#first-project">Try a small validation example →</a><a href="${base}machine-learning-skills/">Choose another ML skill →</a></div>
+</article>

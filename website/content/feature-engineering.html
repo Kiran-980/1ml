@@ -1,0 +1,20 @@
+<header class="guide-head"><p class="breadcrumb"><a href="$base">1ml</a> / Feature engineering</p><span class="eyebrow">Build inputs the model can actually use</span><h1>Feature engineering and preprocessing skills.</h1><p class="lead">Use 1ml with Codex or Claude Code to prepare tabular data, handle missing values and categories, and review scikit-learn pipelines for data leakage.</p></header>
+<article class="article">
+<h2>Start with what is known at prediction time</h2>
+<p>A feature can improve a notebook score and still be unusable. A refund recorded after cancellation cannot help predict that cancellation in advance. An average calculated over a customer's entire history may accidentally include future activity.</p>
+<p>The <a href="$repo/blob/main/skills/prepare/SKILL.md">prepare skill</a> connects source semantics, feature availability, model requirements and the <a href="${base}model-evaluation/">evaluation design</a>. Ask it to distinguish a proposed feature from a measured improvement. Keeping the existing representation is a valid outcome.</p>
+<h2>Review a tabular preprocessing pipeline</h2>
+<div class="prompt"><p>Use 1ml's prepare skill to review preprocessing for my churn classifier. The raw inputs include numeric usage, categorical plan names and missing account fields. Predictions happen at the start of each month. Check which source values are available then. For a scikit-learn pipeline, specify which operations are fixed and which learn from data; fit learned operations within each training fold. Test unseen categories, missing markers, row alignment and the raw input schema at inference. Show a bounded raw-to-processed example and explain any additional features you retain.</p></div>
+<h2>Choose transformations for the candidate</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">Decision</th><th scope="col">What to check</th></tr></thead><tbody>
+<tr><td>Missing values</td><td>Distinguish unknown from not applicable. Inspect relevant missingness patterns before choosing imputation or native missing-value support.</td></tr>
+<tr><td>Scaling and encoding</td><td>Match numerical scales and categorical representations to the estimator. Check how unseen categories are handled.</td></tr>
+<tr><td>Feature selection</td><td>Fit data-dependent selection inside training folds and compare candidates under the same validation design.</td></tr>
+<tr><td>Lagged or aggregate features</td><td>Use only observations available at the prediction timestamp and preserve entity boundaries.</td></tr>
+</tbody></table></div>
+<h2>Keep learned preprocessing inside cross-validation</h2>
+<p>Learned imputers, scalers, vocabularies and selectors must respect the training boundary. Fitting them on the full dataset before cross-validation leaks information into validation. A reusable pipeline helps apply the same fitted transformations when predicting, but the pipeline still needs the right split and input schema.</p>
+<p>Ask for an observed fit-and-transform check using the raw columns the deployed prediction code will receive. Check the resulting feature names or shape, accepted missing values and unknown-category behavior. This catches errors such as applying a transformation twice or dropping a column before another step uses it.</p>
+<p>For a worked task prompt, continue to <a href="${base}classification/">classification</a>, <a href="${base}regression/">regression</a> or <a href="${base}time-series-forecasting/">time series forecasting</a>. For unresolved source patterns, return to <a href="${base}exploratory-data-analysis/">exploratory data analysis</a>.</p>
+<div class="next"><a href="${base}getting-started/#install">Install 1ml →</a><a href="$repo/blob/main/skills/prepare/references/features-checks.md">Read the feature checks on GitHub →</a></div>
+</article>
