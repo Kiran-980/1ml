@@ -1,6 +1,6 @@
-# Machine learning skills for classification, regression and time series
+# Machine learning skills for AI agents
 
-[1ml](../README.md) gives AI coding agents twelve connected machine learning skills for data analysis, modeling and reproducible Jupyter notebooks. Start with the [lifecycle skill](../skills/lifecycle/SKILL.md), or use an individual skill for a focused decision. Follow the [installation guide](installation.md) for Codex, Claude Code and other supported agent integrations.
+[1ml](../README.md) gives AI coding agents twelve connected ML skills for data analysis, classification, regression, time series forecasting and reproducible Jupyter notebooks. Each skill is a readable `SKILL.md` file with task-specific references. Start with the [lifecycle skill](../skills/lifecycle/SKILL.md), or use an individual skill for a focused decision. Follow the [installation guide](installation.md) for Codex, Claude Code and other supported agent integrations.
 
 1ml is free and open source. Start with a [small synthetic project](getting-started.md), or see a [public notebook and task-specific starter prompts](examples.md). Your agent/model service and compute may have their own costs.
 

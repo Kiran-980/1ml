@@ -4,13 +4,13 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/Kiran-980/1ml)](https://github.com/Kiran-980/1ml/releases)
 
-Build readable, reproducible machine learning notebooks with **Codex, Claude Code and other coding agents**. Twelve connected skills guide classification, regression, time series forecasting, clustering, exploratory data analysis and model evaluation.
+1ml provides **machine learning skills for AI agents**, including Codex and Claude Code. Twelve connected ML skills help your agent build readable, reproducible notebooks for classification, regression, time series forecasting, clustering, exploratory data analysis and model evaluation.
 
 1ml helps your agent choose useful baselines, prevent data leakage and explain what the results actually support. It can also conclude that a rule, statistical analysis or existing baseline is enough.
 
 **Free and open source under MIT.** No 1ml subscription, account or paid tier is required. Your coding agent, model provider and compute may have their own costs.
 
-[Website](https://kiran-980.github.io/1ml/) · [Install](#install) · [Try your first project](docs/getting-started.md) · [See examples](docs/examples.md) · [Browse ML tasks](docs/machine-learning-skills.md) · [Contribute](CONTRIBUTING.md)
+[Machine learning skills website](https://kiran-980.github.io/1ml/) · [Install](#install) · [Try your first project](docs/getting-started.md) · [See examples](docs/examples.md) · [ML skills guide](https://kiran-980.github.io/1ml/machine-learning-skills/) · [Contribute](CONTRIBUTING.md)
 
 ## See what you can make
 
