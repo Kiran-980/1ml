@@ -42,7 +42,7 @@ class WebsiteTests(unittest.TestCase):
             output = Path(tmp) / 'site'
             builder.build(output)
             htmls = sorted(output.rglob('*.html'))
-            self.assertEqual(len(htmls), 9)
+            self.assertEqual(len(htmls), 12)
             canonicals, descriptions, titles = set(), set(), set()
             for path in htmls:
                 text = path.read_text(encoding='utf-8')

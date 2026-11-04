@@ -61,6 +61,15 @@ See the [installation guide](docs/installation.md) for verification, local alter
 | [Clustering](docs/machine-learning-skills.md#clustering-and-unsupervised-learning-skills) | Scaling, distance, stability and whether groups answer a useful question |
 | [EDA, statistics and model evaluation](docs/machine-learning-skills.md#data-analysis-statistics-and-model-evaluation) | Missingness, useful charts, uncertainty, cross-validation and error analysis |
 
+## Data science skills for existing notebooks
+
+You can ask for one focused investigation in Claude Code or Codex. These guides include example requests and show what useful output should contain:
+
+- [Exploratory data analysis](https://kiran-980.github.io/1ml/exploratory-data-analysis/): inspect missing data, distributions and relationships in a Python notebook.
+- [Feature engineering and preprocessing](https://kiran-980.github.io/1ml/feature-engineering/): prepare tabular data, handle categories and review scikit-learn pipelines.
+- [Model evaluation and cross-validation](https://kiran-980.github.io/1ml/model-evaluation/): audit data leakage, metric choices and training/test boundaries.
+- [Jupyter notebook examples](https://kiran-980.github.io/1ml/examples/): read a public NLP classification notebook or try a task-specific starter prompt.
+
 ## Connected, independently usable skills
 
 | Skill | Purpose |
